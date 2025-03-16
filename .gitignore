@@ -1,0 +1,30 @@
+# Ignorer les environnements virtuels
+venv/
+.env
+.env.local
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.pid
+
+# Ignorer les fichiers spécifiques à l'IDE
+.vscode/
+.idea/
+*.swp
+
+# Ignorer les fichiers de dépendances de JetBrains et VS Code
+*.iml
+.DS_Store
+
+# Ignorer les fichiers de logs et bases de données locales
+logs/
+*.sqlite3
+db.sqlite3
+
+# Ignorer les fichiers générés par Docker et Python
+sinstance/
+
+*.pdf
+.qodo

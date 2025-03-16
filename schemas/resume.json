@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Resume",
+    "description": "Schema for structured resume data",
+    "type": "object",
+    "required": ["Name", "Email", "Phone", "Skills", "Experience"],
+    "properties": {
+      "Name": {
+        "type": ["string", "null"],
+        "description": "Full name of the candidate"
+      },
+      "Email": {
+        "type": ["string", "null"],
+        "description": "Email address of the candidate",
+        "format": "email"
+      },
+      "Phone": {
+        "type": ["string", "null"],
+        "description": "Phone number of the candidate"
+      },
+      "Current_Position": {
+        "type": ["string", "null"],
+        "description": "Current job title or position"
+      },
+      "Skills": {
+        "type": "array",
+        "description": "List of skills mentioned in the resume",
+        "items": {
+          "type": "string"
+        }
+      },
+      "Experience": {
+        "type": "array",
+        "description": "List of work experiences",
+        "items": {
+          "type": "object",
+          "required": ["company", "title", "years"],
+          "properties": {
+            "company": {
+              "type": "string",
+              "description": "Company name"
+            },
+            "title": {
+              "type": "string",
+              "description": "Job title"
+            },
+            "years": {
+              "type": "string",
+              "description": "Period of employment"
+            }
+          }
+        }
+      }
+    }
+  }

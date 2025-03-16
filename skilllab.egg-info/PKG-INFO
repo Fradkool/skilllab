@@ -1,0 +1,27 @@
+Metadata-Version: 2.2
+Name: skilllab
+Version: 0.1.0
+Summary: Tool for extracting, structuring, and training a model on resume data
+Author: SkillBase Team
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8
+Requires-Dist: torch>=1.9.0
+Requires-Dist: transformers>=4.15.0
+Requires-Dist: paddlepaddle
+Requires-Dist: paddleocr
+Requires-Dist: pdf2image>=1.16.0
+Requires-Dist: pillow>=8.3.1
+Requires-Dist: pynvml>=11.0.0
+Requires-Dist: requests>=2.26.0
+Requires-Dist: tqdm>=4.62.2
+Requires-Dist: numpy>=1.21.2
+Requires-Dist: nltk>=3.6.3
+Dynamic: author
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

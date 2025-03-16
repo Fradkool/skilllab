@@ -1,0 +1,142 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Metrics",
+    "description": "Schema for monitoring and metrics data",
+    "type": "object",
+    "required": ["document_id", "metrics_type"],
+    "properties": {
+      "document_id": {
+        "type": "string",
+        "description": "Unique identifier for the document"
+      },
+      "metrics_type": {
+        "type": "string",
+        "enum": ["ocr", "json_generation", "validation", "training"],
+        "description": "Type of metrics being collected"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when metrics were collected"
+      },
+      "ocr_metrics": {
+        "type": "object",
+        "description": "OCR extraction metrics",
+        "properties": {
+          "confidence": {
+            "type": "number",
+            "description": "Overall OCR confidence score (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "text_element_count": {
+            "type": "integer",
+            "description": "Number of text elements extracted"
+          },
+          "processing_time": {
+            "type": "number",
+            "description": "Processing time in seconds"
+          }
+        }
+      },
+      "json_metrics": {
+        "type": "object",
+        "description": "JSON generation metrics",
+        "properties": {
+          "confidence": {
+            "type": "number",
+            "description": "JSON generation confidence score (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "fields_extracted": {
+            "type": "integer",
+            "description": "Number of fields successfully extracted"
+          },
+          "missing_fields": {
+            "type": "array",
+            "description": "List of missing fields",
+            "items": {
+              "type": "string"
+            }
+          },
+          "processing_time": {
+            "type": "number",
+            "description": "Processing time in seconds"
+          }
+        }
+      },
+      "validation_metrics": {
+        "type": "object",
+        "description": "Validation metrics",
+        "properties": {
+          "is_valid": {
+            "type": "boolean",
+            "description": "Whether the document passed validation"
+          },
+          "coverage": {
+            "type": "number",
+            "description": "Text coverage percentage (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "correction_attempts": {
+            "type": "integer",
+            "description": "Number of correction attempts made"
+          },
+          "validation_time": {
+            "type": "number",
+            "description": "Validation processing time in seconds"
+          }
+        }
+      },
+      "training_metrics": {
+        "type": "object",
+        "description": "Training metrics",
+        "properties": {
+          "epoch": {
+            "type": "integer",
+            "description": "Current training epoch"
+          },
+          "loss": {
+            "type": "number",
+            "description": "Training loss value"
+          },
+          "validation_loss": {
+            "type": "number",
+            "description": "Validation loss value"
+          },
+          "gpu_memory_usage": {
+            "type": "number",
+            "description": "GPU memory usage in GB"
+          },
+          "gpu_utilization": {
+            "type": "number",
+            "description": "GPU utilization percentage",
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      },
+      "resource_usage": {
+        "type": "object",
+        "description": "System resource usage",
+        "properties": {
+          "cpu_percent": {
+            "type": "number",
+            "description": "CPU usage percentage",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "memory_mb": {
+            "type": "number",
+            "description": "Memory usage in MB"
+          },
+          "gpu_memory_mb": {
+            "type": "number",
+            "description": "GPU memory usage in MB"
+          }
+        }
+      }
+    }
+  }

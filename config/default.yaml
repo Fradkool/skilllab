@@ -1,0 +1,79 @@
+# SkillLab Default Configuration
+
+# Input/Output paths
+paths:
+  input_dir: "data/input"
+  output_dir: "data/output"
+  model_dir: "models/donut_finetuned"
+  logs_dir: "logs"
+
+# Pipeline settings
+pipeline:
+  # Set to "ocr", "json", "correction", "dataset", or "training"
+  start_step: "ocr"  
+  end_step: "training"
+  limit: null  # Maximum number of resumes to process (null for all)
+
+# GPU settings
+gpu:
+  monitor: false
+  use_gpu_ocr: false
+
+# OCR settings
+ocr:
+  language: "en"
+  dpi: 300
+  min_confidence: 0.5
+  service_url: "http://localhost:8080/v1/ocr/process_pdf"
+  use_service: false  # Set to true to use containerized PaddleOCR service
+
+# JSON generation settings
+json_generation:
+  ollama_url: "http://localhost:11434/api/generate"
+  model_name: "mistral:7b-instruct-v0.2-q8_0"
+  temperature: 0.1
+  max_tokens: 2048
+  max_retries: 3
+  timeout: 300
+
+# Auto-correction settings
+correction:
+  min_coverage_threshold: 0.9
+  max_correction_attempts: 3
+
+# Dataset builder settings
+dataset:
+  train_val_split: 0.8
+  task_name: "resume_extraction"
+
+# Training settings
+training:
+  epochs: 5
+  batch_size: 4
+  learning_rate: 5.0e-5
+  weight_decay: 0.01
+  pretrained_model: "naver-clova-ix/donut-base"
+
+# Human review settings
+review:
+  enabled: false
+  db_path: "review/review.db"
+
+# Monitoring settings
+monitoring:
+  enabled: false
+  metrics_db: "data/metrics.db"
+  update_interval: 2.0
+
+# Database settings
+database:
+  main_db_path: "data/skilllab.db"
+  pool_size: 5
+  timeout: 30
+
+# Logging settings
+logging:
+  level: "INFO"
+  file: "logs/skilllab.log"
+  max_size_mb: 10
+  backup_count: 5

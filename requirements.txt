@@ -1,0 +1,31 @@
+# Core dependencies
+torch>=1.9.0
+transformers>=4.25.0
+paddlepaddle
+paddleocr
+pdf2image>=1.16.0
+pillow>=8.3.1
+requests>=2.26.0
+tqdm>=4.62.2
+numpy>=1.21.2
+nltk>=3.6.3
+protobuf<4.0.0
+pynvml>=11.0.0
+backoff>=2.2.1
+
+# Donut dependencies
+sentencepiece
+python-Levenshtein
+albumentations
+
+# Monitoring dependencies
+psutil
+rich
+blessed
+
+# Review system dependencies
+streamlit>=1.22.0
+matplotlib
+pandas
+plotly
+watchdog
