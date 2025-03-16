@@ -351,7 +351,7 @@ configure_skilllab() {
     if [ ! -f "$SCRIPT_DIR/config/default.yaml" ]; then
         log "ERROR" "Configuration file not found. SkillLab cannot be configured properly."
         return 1
-    }
+    fi
     
     log "SUCCESS" "SkillLab configured successfully."
     return 0
@@ -367,14 +367,14 @@ verify_installation() {
     if ! python cli.py --help >> "$LOG_FILE" 2>&1; then
         log "ERROR" "CLI verification failed. Check $LOG_FILE for details."
         return 1
-    }
+    fi
     
     # Check if services are running
     if ! docker ps | grep -q "paddleocr\|ollama"; then
         log "WARNING" "SkillLab services are not running. Some features may not be available."
     else
         log "SUCCESS" "SkillLab services are running."
-    }
+    fi
     
     log "SUCCESS" "SkillLab installation verified successfully."
     return 0
@@ -401,7 +401,7 @@ main() {
     if ! version_greater_equal "$python_version" "$MIN_PYTHON_VERSION"; then
         log "ERROR" "Python version $python_version is older than the required version $MIN_PYTHON_VERSION. Please upgrade Python."
         exit 1
-    }
+    fi
     
     # Check pip version
     log "INFO" "Checking pip version..."
@@ -415,20 +415,20 @@ main() {
             if [ $? -ne 0 ]; then
                 log "ERROR" "Failed to install pip."
                 exit 1
-            }
+            fi
             log "SUCCESS" "pip installed successfully."
         else
             log "ERROR" "pip is required for installation. Exiting."
             exit 1
         fi
-    }
+    fi
     
     pip_version=$(pip3 --version | awk '{print $2}')
     log "INFO" "Found pip version $pip_version"
     
     if ! version_greater_equal "$pip_version" "$MIN_PIP_VERSION"; then
         log "WARNING" "pip version $pip_version is older than the recommended version $MIN_PIP_VERSION. Consider upgrading pip."
-    }
+    fi
     
     # Check for venv module
     log "INFO" "Checking for venv module..."
@@ -451,13 +451,13 @@ main() {
             if ! python3 -c "import venv" &> /dev/null; then
                 log "ERROR" "Failed to install Python venv module."
                 exit 1
-            }
+            fi
             log "SUCCESS" "Python venv module installed successfully."
         else
             log "ERROR" "Python venv module is required for installation. Exiting."
             exit 1
         fi
-    }
+    fi
     
     # Create virtual environment
     if ! create_virtual_env; then
@@ -469,7 +469,7 @@ main() {
     if ! install_requirements; then
         log "ERROR" "Failed to install Python requirements. Exiting."
         exit 1
-    }
+    fi
     
     # Setup CLI
     if ! setup_cli; then
